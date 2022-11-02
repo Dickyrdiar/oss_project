@@ -13,11 +13,11 @@ import {
 import Image from "next/image";
 
 const Card = ({ data }) => {
-  console.log("data", data.label)
+  // console.log("data", data.name)
 
   return (
     <>
-      {data && data.map((val) => {
+      {data && data?.map((val) => {
         return (
           <>
             <LinkBox>
@@ -52,13 +52,13 @@ const Card = ({ data }) => {
                         fontWeight={300}
                         fontSize={'sm'}
                         letterSpacing={1.1}>
-                        {val?.category}
+                        {val?.topics}
                       </Text>
                       <Heading
                         color={('gray.700', 'white')}
                         fontSize={'sm'}
                         fontFamily={'body'}>
-                        {val?.label}
+                        {val?.name}
                       </Heading>
                       {/* <Text color={'gray.500'}>
                         Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam

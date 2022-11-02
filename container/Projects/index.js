@@ -10,36 +10,53 @@ import {
   SimpleGrid,
   Select
 } from '@chakra-ui/react';
+import axios from 'axios';
 // import Image from 'next/image';
 import React, {useEffect, useState} from "react";
 import { octokit } from '../../pages/api/octokit';
 import Card from '../../shared/card';
-import Dropdown from '../../shared/dropdown';
-import dataProjects from './dataProjects';
+// import Dropdown from '../../shared/dropdown';
 
 
 const Project = () => {
-  const [user, setUser] = useState([])
+  const [repos, setRepos] = useState([])
+  const [language, setLanguage] = useState([])
 
   useEffect(() => {
     async function onUSer() {
-      await octokit.request('GET /orgs/{org}/repos', {
-        org: 'ORG'
-      }).then(res => {
-        setUser(res)
+      await octokit.request('GET /repositories', {}
+      ).then(res => {
+        setRepos(res?.data)
+      }).catch(err => {
+        console.log("error", err)
       })
     }
-
     onUSer()
   }, [])
 
-  console.log('user', user)
+  useEffect(() => {
+    async function getLanguage() {
+     try {
+       const data = await axios.get(languages_url)
+       console.log("data", data)
+       setLanguage(data)
+     } catch (error) {
+       console.log(error)
+     }
+    }
+
+    getLanguage()
+  }, [])
+
+  console.log('data', language)
+
+  // console.log('user', repos.map(val => val.tags_url))
 
   return (
     <Container maxW={'9xl'} backgroundColor='#f7f8fd'>
       <Box>
         <Container maxW={'2xl'} background="green">
-          <Dropdown data={Data} />
+          {/* <Dropdown data={Data} /> */}
         </Container>
         <Container maxW={'7xl'}>
             <Stack
@@ -49,7 +66,7 @@ const Project = () => {
             py={{ base: 10, md: 36 }}
             >
               <SimpleGrid  columns={[2, null, 4]} spacing='40px'>  
-                <Card data={dataProjects} />
+                <Card data={repos} />
               </SimpleGrid>
             </Stack>
         </Container>
@@ -59,15 +76,3 @@ const Project = () => {
 }
 
 export default Project
-
-const Data = [
-  {
-    id: 1,
-    label: 'start'
-  }, 
-
-  {
-    id: 2,
-    label: 'Fork'
-  }
-]
