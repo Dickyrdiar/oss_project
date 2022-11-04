@@ -1,6 +1,6 @@
-import React from "react";
-import { Box, Text } from "@chakra-ui/react";
-import { ReactComponent as IconHeader } from '../../asset/osi.svg'
+import React from 'react';
+import { Box, Text } from '@chakra-ui/react';
+// import { ReactComponent as IconHeader } from '../../asset/osi.svg';
 
 export default function Logo(props) {
   return (

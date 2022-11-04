@@ -7,12 +7,14 @@ import {
 } from '@chakra-ui/react';
 // import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
+import GetHitApi from '../../pages/api/GetHitApi';
 import { octokit } from '../../pages/api/octokit';
 import Card from '../../shared/card';
 // import Dropdown from '../../shared/dropdown';
 
 function Project() {
   const [repos, setRepos] = useState([]);
+  // const [language, setLanguage] = useState([]);
   // const [language, setLanguage] = useState([]);
 
   useEffect(() => {
@@ -26,9 +28,15 @@ function Project() {
     onUSer();
   }, []);
 
-  // const { response: responseLang, error: errorLang } = GetHitApi({
-  //   url:
-  // })
+  const dataLang = repos.map((val) => val.languages_url);
+  console.log('data', dataLang);
+
+  const { response: responseLang } = GetHitApi({
+    url: dataLang,
+  });
+
+  console.log('response lang', responseLang);
+  console.log('image', repos?.owner);
 
   return (
     <Container maxW="9xl" backgroundColor="#f7f8fd">
