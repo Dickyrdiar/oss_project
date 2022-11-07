@@ -14,8 +14,6 @@ import Card from '../../shared/card';
 
 function Project() {
   const [repos, setRepos] = useState([]);
-  // const [language, setLanguage] = useState([]);
-  // const [language, setLanguage] = useState([]);
 
   useEffect(() => {
     async function onUSer() {
@@ -29,14 +27,20 @@ function Project() {
   }, []);
 
   const dataLang = repos.map((val) => val.languages_url);
-  console.log('data', dataLang);
+  // const dataStart = repos.map((val) => val.stargazers_url);
+  // console.log('data', dataLang);
 
   const { response: responseLang } = GetHitApi({
     url: dataLang,
   });
 
+  const { response: startGazzer } = GetHitApi({
+    url: 'https://api.github.com/repos/vanpelt/jsawesome/stargazers',
+  });
+
   console.log('response lang', responseLang);
-  console.log('image', repos?.owner);
+  console.log('start', startGazzer);
+  // console.log('image', repos?.owner);
 
   return (
     <Container maxW="9xl" backgroundColor="#f7f8fd">

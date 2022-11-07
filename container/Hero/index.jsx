@@ -9,6 +9,7 @@ import {
   Text,
 } from '@chakra-ui/react';
 import React, { useState } from 'react';
+import { octokit } from '../../pages/api/octokit';
 // import dataHero from './dataHero';
 
 function Hero() {
@@ -16,6 +17,13 @@ function Hero() {
 
   const handleSearchValue = (e) => {
     setSearchValue(e.target.value);
+
+    async function handleSeacrh() {
+      await octokit.request('GET /search/repositories', {})
+        .then((res) => console.log('response search', res));
+    }
+
+    handleSeacrh();
   };
 
   console.log('value', searchValue);

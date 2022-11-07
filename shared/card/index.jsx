@@ -1,24 +1,42 @@
+/* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable react/jsx-no-useless-fragment */
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Box,
   Center,
   Heading,
-  Text,
   Stack,
   LinkBox,
   LinkOverlay,
+  Avatar,
+  Spacer,
 } from '@chakra-ui/react';
 import Image from 'next/image';
+import { Icon } from '@iconify/react';
+import GetHitApi from '../../pages/api/GetHitApi';
 
 function Card({ data }) {
   // console.log("data", data.name)
-  // const [dataImage, setDataImage] = useState(null);
+  const [image, setImage] = useState('');
+
+  const dataImage = data.map((val) => val.owner.avatar_url);
+  const { response: imageResponse } = GetHitApi({
+    url: dataImage,
+  });
+
+  useEffect(() => {
+    if (imageResponse) {
+      setImage(imageResponse);
+    }
+  }, [imageResponse]);
+
+  console.log('image', image);
+
   return (
     <>
       {data && data?.map((val) => (
         <LinkBox>
-          <LinkOverlay href={val?.url}>
+          <LinkOverlay href={val?.name}>
             <Center py={6}>
               <Box
                 maxW="345px"
@@ -38,43 +56,45 @@ function Card({ data }) {
                   pos="relative"
                 >
                   <Image
-                    src={val.owner.image_url}
+                    // src={val.owner.avatar_url}
+                    src={image}
                     layout="fill"
                   />
                 </Box>
                 <Stack>
-                  <Text
-                    color="green.500"
-                    textTransform="uppercase"
-                    fontWeight={300}
-                    fontSize="sm"
-                    letterSpacing={1.1}
-                  >
-                    {val?.topics}
-                  </Text>
                   <Heading
+                    padding="6px"
                     color={('gray.700', 'white')}
-                    fontSize="sm"
-                    fontFamily="body"
+                    fontSize="13px"
+                    // bg="green"
+                    // fontFamily="body"
+                    marginLeft="13px"
+                    display="flex"
+                    w="13rem"
                   >
-                    {val?.name}
+                    <Box>
+                      {val?.name}
+                    </Box>
+                    <Spacer />
+                    <Box
+                      justifyContent="space-between"
+                    >
+                      <Icon icon="fa-regular:star" color="#f2f2f2" />
+                    </Box>
                   </Heading>
-                  {/* <Text color={'gray.500'}>
-                        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-                        nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
-                        erat, sed diam voluptua. At vero eos et accusam et justo duo dolores
-                        et ea rebum.
-                      </Text> */}
+                  <Stack
+                    style={{
+                      marginTop: '-30px',
+                      marginLeft: '-19px',
+                    }}
+                  >
+                    <Avatar
+                      size="sm"
+                      src={image}
+                      alt="Author"
+                    />
+                  </Stack>
                 </Stack>
-                {/* <Stack mt={6}  spacing={4} >
-                      <Avatar
-                        src={'https://avatars0.githubusercontent.com/u/1164541?v=4'}
-                        alt={'Author'}
-                      />
-                      <Stack direction={'column'} spacing={0} fontSize={'sm'}>
-                        <Text fontWeight={600}>Achim Rolle</Text>
-                      </Stack>
-                    </Stack> */}
               </Box>
             </Center>
           </LinkOverlay>
