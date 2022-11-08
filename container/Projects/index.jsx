@@ -12,6 +12,7 @@ import React, { useEffect, useState } from 'react';
 import GetHitApi from '../../pages/api/GetHitApi';
 import { octokit } from '../../pages/api/octokit';
 import Card from '../../shared/card';
+import ProjectList from './projectList';
 // import Dropdown from '../../shared/dropdown';
 
 function Project() {
@@ -30,14 +31,6 @@ function Project() {
     onUSer();
   }, []);
 
-  console.log('loading', loading);
-
-  // if (loading === true) {
-  //   return (
-  //     <Spinner />
-  //   );
-  // }
-
   return (
     <Container maxW="9xl" backgroundColor="#f7f8fd">
       <Box>
@@ -51,9 +44,10 @@ function Project() {
             spacing={{ base: 8, md: 14 }}
             py={{ base: 10, md: 36 }}
           >
-            <SimpleGrid columns={[2, null, 4]} spacing="40px">
-              <Card data={repos} />
-            </SimpleGrid>
+            {/* <SimpleGrid columns={[2, null, 4]} spacing="40px"> */}
+            {/* <Card data={repos} /> */}
+            <ProjectList data={repos} />
+            {/* </SimpleGrid> */}
           </Stack>
         </Container>
       </Box>
