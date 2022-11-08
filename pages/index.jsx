@@ -1,4 +1,6 @@
+/* eslint-disable import/no-named-as-default */
 /* eslint-disable react/jsx-filename-extension */
+import Footer from '../container/Footer';
 import Header from '../container/Header';
 import Hero from '../container/Hero';
 import Project from '../container/Projects';
@@ -10,6 +12,7 @@ export default function Home() {
       <Header />
       <Hero />
       <Project />
+      <Footer />
     </div>
   );
 }

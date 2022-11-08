@@ -1,9 +1,11 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/jsx-filename-extension */
 import {
   Box,
   Stack,
   Container,
   SimpleGrid,
+  Spinner,
 } from '@chakra-ui/react';
 // import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
@@ -14,9 +16,11 @@ import Card from '../../shared/card';
 
 function Project() {
   const [repos, setRepos] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     async function onUSer() {
+      setLoading(true);
       await octokit.request('GET /repositories', {}).then((res) => {
         setRepos(res?.data);
       }).catch((err) => {
@@ -26,21 +30,13 @@ function Project() {
     onUSer();
   }, []);
 
-  const dataLang = repos.map((val) => val.languages_url);
-  // const dataStart = repos.map((val) => val.stargazers_url);
-  // console.log('data', dataLang);
+  console.log('loading', loading);
 
-  const { response: responseLang } = GetHitApi({
-    url: dataLang,
-  });
-
-  const { response: startGazzer } = GetHitApi({
-    url: 'https://api.github.com/repos/vanpelt/jsawesome/stargazers',
-  });
-
-  console.log('response lang', responseLang);
-  console.log('start', startGazzer);
-  // console.log('image', repos?.owner);
+  // if (loading === true) {
+  //   return (
+  //     <Spinner />
+  //   );
+  // }
 
   return (
     <Container maxW="9xl" backgroundColor="#f7f8fd">

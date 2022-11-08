@@ -34,72 +34,84 @@ function Card({ data }) {
 
   return (
     <>
-      {data && data?.map((val) => (
-        <LinkBox>
-          <LinkOverlay href={val?.name}>
-            <Center py={6}>
-              <Box
-                maxW="345px"
-                w="full"
-                bg={('white', 'gray.900')}
-                boxShadow="2xl"
-                rounded="md"
-                p={6}
-                overflow="hidden"
-              >
+      {data && data?.map((val) => {
+        // const { response: starGazzer } = GetHitApi({
+        //   url: val?.stargazers_url,
+        // });
+
+        console.log('startgazzer', val.stargazers_url);
+        // console.log('start', starGazzer);
+
+        return (
+          <LinkBox>
+            <LinkOverlay href={`repositories/${val.name}`}>
+              <Center py={6}>
                 <Box
-                  h="140px"
-                  bg="gray.100"
-                  mt={-6}
-                  mx={-6}
-                  mb={6}
-                  pos="relative"
+                  maxW="345px"
+                  w="full"
+                  bg={('white', 'gray.900')}
+                  boxShadow="2xl"
+                  rounded="md"
+                  p={6}
+                  overflow="hidden"
                 >
-                  <Image
+                  <Box
+                    h="140px"
+                    bg="gray.100"
+                    mt={-6}
+                    mx={-6}
+                    mb={6}
+                    pos="relative"
+                  >
+                    <Image
                     // src={val.owner.avatar_url}
-                    src={image}
-                    layout="fill"
-                  />
-                </Box>
-                <Stack>
-                  <Heading
-                    padding="6px"
-                    color={('gray.700', 'white')}
-                    fontSize="13px"
+                      src={image}
+                      layout="fill"
+                    />
+                  </Box>
+                  <Stack>
+                    <Heading
+                      padding="6px"
+                      color={('gray.700', 'white')}
+                      fontSize="13px"
                     // bg="green"
                     // fontFamily="body"
-                    marginLeft="13px"
-                    display="flex"
-                    w="13rem"
-                  >
-                    <Box>
-                      {val?.name}
-                    </Box>
-                    <Spacer />
-                    <Box
-                      justifyContent="space-between"
+                      marginLeft="13px"
+                      display="flex"
+                      w="13rem"
                     >
-                      <Icon icon="fa-regular:star" color="#f2f2f2" />
-                    </Box>
-                  </Heading>
-                  <Stack
-                    style={{
-                      marginTop: '-30px',
-                      marginLeft: '-19px',
-                    }}
-                  >
-                    <Avatar
-                      size="sm"
-                      src={image}
-                      alt="Author"
-                    />
+                      <Box>
+                        {val?.name}
+                      </Box>
+                      <Spacer />
+                      <Box
+                        justifyContent="space-between"
+                      >
+                        {/* {startGazer} */}
+                        {/* {val?.stargazers_url} */}
+                        {' '}
+                        <Icon icon="fa-regular:star" color="#f2f2f2" />
+                      </Box>
+                    </Heading>
+                    <Stack
+                      style={{
+                        marginTop: '-30px',
+                        marginLeft: '-19px',
+                      }}
+                    >
+                      <Avatar
+                        size="sm"
+                        src={image}
+                        alt="Author"
+                      />
+                    </Stack>
                   </Stack>
-                </Stack>
-              </Box>
-            </Center>
-          </LinkOverlay>
-        </LinkBox>
-      ))}
+                </Box>
+              </Center>
+            </LinkOverlay>
+          </LinkBox>
+        );
+      })}
     </>
   );
 }
