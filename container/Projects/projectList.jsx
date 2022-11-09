@@ -1,71 +1,64 @@
-/* eslint-disable react/jsx-no-useless-fragment */
-/* eslint-disable react/destructuring-assignment */
+/* eslint-disable jsx-a11y/anchor-is-valid */
+/* eslint-disable import/no-extraneous-dependencies */
 import {
-  Box, Container, Divider, Stack, Spacer, Heading,
+  Box,
+  chakra,
+  SimpleGrid,
+  Stat,
+  StatLabel,
+  StatNumber,
+  useColorModeValue,
+  Stack,
 } from '@chakra-ui/react';
+import { Icon } from '@iconify/react';
+import Link from 'next/link';
 
-function ProjectList({ data }) {
-  console.log('data', data);
-
+function StatsCard(props) {
+  const { title, stat } = props;
   return (
-    // eslint-disable-next-line react/jsx-no-useless-fragment
-    <>
-      <Container maxW="full">
+    <Stat
+      px={{ base: 4, md: 8 }}
+      py="5"
+      shadow="xl"
+      border="1px solid"
+      borderColor={useColorModeValue('gray.800', 'gray.500')}
+      rounded="lg"
+    >
+      <StatLabel fontWeight="medium" fontSize="2xl" isTruncated>
+        {title}
+      </StatLabel>
+      <StatNumber fontSize="medium" fontWeight="medium">
+        {stat}
+      </StatNumber>
+      <Stack>
         <Box
-        // maxW="345px"
-          w="full"
-          bg="white"
-          boxShadow="2xl"
-          rounded="md"
-          p={6}
-          overflow="hidden"
+          textAlign="center"
         >
-          <>
-            {data && data?.map((val) => (
-              <Stack>
-                <Heading
-                  padding="6px"
-                  color={('gray.700', 'white')}
-                  fontSize="13px"
-                    // bg="green"
-                    // fontFamily="body"
-                  marginLeft="13px"
-                  display="flex"
-                  w="13rem"
-                >
-                  <Box>
-                    {val?.name}
-                  </Box>
-                  <Spacer />
-                  <Box
-                    justifyContent="space-between"
-                  >
-                    {/* {startGazer} */}
-                    {/* {val?.stargazers_url} */}
-                    {' '}
-                    {/* <Icon icon="fa-regular:star" color="#f2f2f2" /> */}
-                  </Box>
-                </Heading>
-                <Stack
-                  style={{
-                    marginTop: '-30px',
-                    marginLeft: '-19px',
-                  }}
-                >
-                  {/* <Avatar
-                      size="sm"
-                      src={image}
-                      alt="Author"
-                    /> */}
-                </Stack>
-              </Stack>
-            ))}
-          </>
+          <Icon icon="fa-regular:star" color="black" />
         </Box>
-        <Divider />
-      </Container>
-    </>
+      </Stack>
+    </Stat>
   );
 }
 
-export default ProjectList;
+export default function ProjectList({ data }) {
+  return (
+    <Box maxW="7xl" mx="auto" pt={2} mt="-12rem" px={{ base: 2, sm: 12, md: 17 }}>
+      <chakra.h1
+        textAlign="center"
+        fontSize="2xl"
+        py={10}
+        fontWeight="bold"
+      >
+        what is your contribution?
+      </chakra.h1>
+      <SimpleGrid columns={{ base: 1, md: 3 }} spacing={{ base: 5, lg: 8 }}>
+        { data && data.map((val) => (
+          <Link href="#">
+            <StatsCard title={val?.name} />
+          </Link>
+        )) }
+      </SimpleGrid>
+    </Box>
+  );
+}

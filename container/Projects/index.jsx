@@ -32,7 +32,7 @@ function Project() {
   }, []);
 
   return (
-    <Container maxW="9xl" backgroundColor="#f7f8fd">
+    <Container maxW="9xl" backgroundColor="#ffff">
       <Box>
         <Container maxW="2xl" background="green">
           {/* <Dropdown data={Data} /> */}
@@ -44,10 +44,7 @@ function Project() {
             spacing={{ base: 8, md: 14 }}
             py={{ base: 10, md: 36 }}
           >
-            {/* <SimpleGrid columns={[2, null, 4]} spacing="40px"> */}
-            {/* <Card data={repos} /> */}
             <ProjectList data={repos} />
-            {/* </SimpleGrid> */}
           </Stack>
         </Container>
       </Box>

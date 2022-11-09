@@ -11,7 +11,7 @@ import {
 
 function Hero({ value }) {
   return (
-    <Container maxW="9xl" backgroundColor="#0e1117">
+    <Container maxW="5xl" backgroundColor="#ffff">
       <Stack
         as={Box}
         textAlign="center"
@@ -21,13 +21,13 @@ function Hero({ value }) {
         <Heading
           fontWeight={600}
           fontSize={{ base: '2xl', sm: '4xl', md: '6xl' }}
-          lineHeight="110%"
-          color="white"
+          lineHeight="80%"
+          color="gray.900"
         >
           Explore the world’s leading
           {' '}
           <br />
-          <Text as="span" color="green.400">
+          <Text as="span" color="gray.900">
             Open Source Projets
           </Text>
         </Heading>
@@ -46,6 +46,7 @@ function Hero({ value }) {
               color: 'black',
               maxWidth: '40em',
               top: '13px',
+              border: '1px solid black',
             }}
             placeholder="search project.."
           />
