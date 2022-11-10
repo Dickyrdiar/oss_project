@@ -11,9 +11,7 @@ import {
 import React, { useEffect, useState } from 'react';
 import GetHitApi from '../../pages/api/GetHitApi';
 import { octokit } from '../../pages/api/octokit';
-import Card from '../../shared/card';
-import ProjectList from './projectList';
-// import Dropdown from '../../shared/dropdown';
+import ProjectLlist from '../../shared/ProjectListt/ProjectNew';
 
 function Project() {
   const [repos, setRepos] = useState([]);
@@ -44,7 +42,7 @@ function Project() {
             spacing={{ base: 8, md: 14 }}
             py={{ base: 10, md: 36 }}
           >
-            <ProjectList data={repos} />
+            <ProjectLlist data={repos} />
           </Stack>
         </Container>
       </Box>
