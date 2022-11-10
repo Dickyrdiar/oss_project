@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
 import React from 'react';
 import {
-  Link, Box, Flex, Text, Stack,
+  Link, Box, Flex, Text, Stack, Container,
 } from '@chakra-ui/react';
 import dataHeader from './dataHeader';
 
@@ -9,15 +9,18 @@ import Logo from './logo';
 
 function NavBar(props) {
   const [isOpen, setIsOpen] = React.useState(false);
-
   const toggle = () => setIsOpen(!isOpen);
 
   return (
+
     <NavBarContainer {...props}>
+      {/* <Box maxW="7xl" mx="auto" pt={2} mt="-12rem" px={{ base: 2, sm: 12, md: 17 }}> */}
       <Logo />
       <MenuToggle toggle={toggle} isOpen={isOpen} />
       <MenuLinks isOpen={isOpen} />
+      {/* </Box> */}
     </NavBarContainer>
+
   );
 }
 
@@ -73,15 +76,17 @@ function MenuLinks({ isOpen }) {
       display={{ base: isOpen ? 'block' : 'none', md: 'block' }}
       flexBasis={{ base: '100%', md: 'auto' }}
     >
-      <Stack
-        spacing={8}
-        align="center"
-        justify={['center', 'space-between', 'flex-end', 'flex-end']}
-        direction={['column', 'row', 'row', 'row']}
-        pt={[4, 4, 0, 0]}
-      >
-        {dataHeader && dataHeader?.map((val) => (<MenuItem key={val.id} to={val.url}>{val.label}</MenuItem>))}
-      </Stack>
+      <Container>
+        <Stack
+          spacing={8}
+          align="center"
+          justify={['center', 'space-between', 'flex-end', 'flex-end']}
+          direction={['column', 'row', 'row', 'row']}
+          pt={[4, 4, 0, 0]}
+        >
+          {dataHeader && dataHeader?.map((val) => (<MenuItem key={val.id} to={val.url}>{val.label}</MenuItem>))}
+        </Stack>
+      </Container>
     </Box>
   );
 }
@@ -98,6 +103,9 @@ function NavBarContainer({ children, ...props }) {
       p={5}
       bg={['white']}
       color={['gray.900']}
+      maxW="4xl"
+      mx="auto"
+      px={{ base: 2, sm: 12, md: 17 }}
       {...props}
     >
       {children}
