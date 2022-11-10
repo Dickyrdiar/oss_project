@@ -1,26 +1,20 @@
 const dataHeader = [
   {
     id: 1,
-    label: 'Go pro',
-    url: '/go',
+    label: 'Our Comunity',
+    url: '/comunity',
   },
 
   {
     id: 2,
-    label: 'find open source',
-    url: '/find',
+    label: 'Open Stats',
+    url: '/stats',
   },
 
   {
     id: 3,
-    label: 'Explore',
-    url: '/explore',
-  },
-
-  {
-    id: 4,
-    label: 'Comunity',
-    url: '/comunity',
+    label: 'Donate',
+    url: '/donate',
   },
 ];
 

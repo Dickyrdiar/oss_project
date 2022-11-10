@@ -1,63 +1,57 @@
-/* eslint-disable react/jsx-filename-extension */
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import {
   Container,
   Heading,
   Stack,
-  Box,
-  Input,
-  SimpleGrid,
   Text,
+  Button,
+  // IconProps,
 } from '@chakra-ui/react';
+import Link from 'next/link';
 
-function Hero({ value }) {
+export default function CallToActionWithIllustration() {
   return (
-    <Container maxW="5xl" backgroundColor="#ffff">
+    <Container maxW="5xl">
       <Stack
-        as={Box}
         textAlign="center"
-        spacing={{ base: 8, md: 14 }}
-        py={{ base: 20, md: 36 }}
+        align="center"
+        spacing={{ base: 8, md: 10 }}
+        py={{ base: 20, md: 28 }}
       >
         <Heading
           fontWeight={600}
-          fontSize={{ base: '2xl', sm: '4xl', md: '6xl' }}
-          lineHeight="80%"
-          color="gray.900"
+          fontSize={{ base: '3xl', sm: '4xl', md: '6xl' }}
+          lineHeight="110%"
         >
           Explore the world’s leading
           {' '}
-          <br />
-          <Text as="span" color="gray.900">
+          <Text as="span">
             Open Source Projets
           </Text>
         </Heading>
-        <Stack
-          direction="column"
-          align="center"
-          position="relative"
-          marginTop="12px"
-        >
-          <Input
-            // onChange={handleSearchValue}
-            value={value}
-            style={{
-              borderRadius: 40,
-              background: 'white',
-              color: 'black',
-              maxWidth: '40em',
-              top: '13px',
-              border: '1px solid black',
-            }}
-            placeholder="search project.."
-          />
+        <Text color="gray.500" maxW="3xl">
+          {/* Never miss a meeting. Never be late for one too. Keep track of your
+          meetings and receive smart reminders in appropriate times. Read your
+          smart “Daily Agenda” every morning. */}
+          to help developers find and contribute to the open source projects they dream of and want
+        </Text>
+        <Stack spacing={6} direction="row">
+          <Button
+            rounded="full"
+            px={6}
+            colorScheme="black"
+            bg="gray.900"
+            _hover={{ bg: 'gray.900' }}
+          >
+            <Link href="/projects">
+              Get started
+            </Link>
+          </Button>
+          <Button rounded="full" px={6}>
+            Learn more
+          </Button>
         </Stack>
-
-        <Container maxW="3xl">
-          <SimpleGrid columns={[1, 2, 3, 4, 5, 6]} gap={3} spacing="20px" />
-        </Container>
       </Stack>
     </Container>
   );
 }
-
-export default Hero;

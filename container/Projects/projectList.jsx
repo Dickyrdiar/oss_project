@@ -6,15 +6,16 @@ import {
   SimpleGrid,
   Stat,
   StatLabel,
-  StatNumber,
+  // StatNumber,
   useColorModeValue,
   Stack,
+  StatHelpText,
 } from '@chakra-ui/react';
 import { Icon } from '@iconify/react';
 import Link from 'next/link';
 
 function StatsCard(props) {
-  const { title, stat } = props;
+  const { title } = props;
   return (
     <Stat
       px={{ base: 4, md: 8 }}
@@ -27,14 +28,15 @@ function StatsCard(props) {
       <StatLabel fontWeight="medium" fontSize="2xl" isTruncated>
         {title}
       </StatLabel>
-      <StatNumber fontSize="medium" fontWeight="medium">
-        {stat}
-      </StatNumber>
+      <StatHelpText fontSize="medium" fontWeight="medium" textAlign="center">
+        {/* {stat} */}
+        <Icon icon="fa-regular:star" color="black" />
+      </StatHelpText>
       <Stack>
         <Box
           textAlign="center"
         >
-          <Icon icon="fa-regular:star" color="black" />
+          {/* <Icon icon="fa-regular:star" color="black" /> */}
         </Box>
       </Stack>
     </Stat>
