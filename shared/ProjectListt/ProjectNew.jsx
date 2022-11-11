@@ -3,7 +3,7 @@
 /* eslint-disable array-callback-return */
 /* eslint-disable camelcase */
 import {
-  Container, Flex, Grid, Divider,
+  Container, Flex, Grid, Divider, Text, Heading, Box
 } from '@chakra-ui/react';
 import Link from 'next/link';
 
@@ -11,7 +11,6 @@ import Link from 'next/link';
 import Product from '../../container/Product';
 
 function ProjectLlist({ data }) {
-
   return (
     <Container maxW="3xl">
       <Flex
@@ -29,12 +28,15 @@ function ProjectLlist({ data }) {
           <>
             {data && data.map((val) =>(
               <>
-                <Link href="/DetailProject/">
-                  <Product title={val?.name} imageSrc={val.owner?.avatar_url} price={val?.description} />
+                <Link href={{
+                  pathname: '/DetailProject/',
+                  query: { name: val?.name },
+                }}>
+                  <Product  repoName={val.owner.login}  title={val?.name} imageSrc={val.owner?.avatar_url} price={val?.description} />
                 </Link>
                 <Divider />
               </>,
-            ))}
+            ))};
           </>
         </Grid>
       </Flex>
