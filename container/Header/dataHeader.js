@@ -13,9 +13,16 @@ const dataHeader = [
 
   {
     id: 3,
+    label: 'Forum',
+    url: '/forum',
+  },
+
+  {
+    id: 4,
     label: 'Donate',
     url: '/donate',
   },
+
 ];
 
 export default dataHeader;
