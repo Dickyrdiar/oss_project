@@ -6,11 +6,10 @@ import {
   Container, Flex, Grid, Divider, Text, Heading, Box
 } from '@chakra-ui/react';
 import Link from 'next/link';
-
-// import { Icon } from '@iconify/react';
 import Product from '../../container/Product';
 
 function ProjectLlist({ data }) {
+
   return (
     <Container maxW="3xl">
       <Flex
@@ -36,7 +35,7 @@ function ProjectLlist({ data }) {
                 </Link>
                 <Divider />
               </>,
-            ))};
+            ))}
           </>
         </Grid>
       </Flex>
