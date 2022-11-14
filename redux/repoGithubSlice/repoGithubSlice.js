@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
-import { octokit } from "../pages/api/octokit"
+import { octokit } from "../../pages/api/octokit"
 
 const initialState = {
   loading: false,
@@ -9,7 +9,7 @@ const initialState = {
 
 export const fetchRepositories = createAsyncThunk('repo/fetchRepositories', () => {
   return octokit
-    .request('GET /repositories')
+    .request('GET /repositories', {})
     .then(res => res.data)
 })
 

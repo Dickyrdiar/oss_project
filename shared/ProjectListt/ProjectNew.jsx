@@ -10,6 +10,8 @@ import Product from '../../container/Product';
 
 function ProjectLlist({ data }) {
 
+  console.log('data detail', data)
+
   return (
     <Container maxW="3xl">
       <Flex
@@ -31,7 +33,7 @@ function ProjectLlist({ data }) {
                   pathname: '/DetailProject/',
                   query: { name: val?.name },
                 }}>
-                  <Product  repoName={val.owner.login}  title={val?.name} imageSrc={val.owner?.avatar_url} price={val?.description} />
+                  <Product startGazzer={val.tags_url}  repoName={val.owner.login}  title={val?.name} imageSrc={val.owner?.avatar_url} price={val?.description} />
                 </Link>
                 <Divider />
               </>,

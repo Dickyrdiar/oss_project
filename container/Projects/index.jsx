@@ -20,7 +20,7 @@ import GetHitApi from '../../pages/api/GetHitApi';
 import { octokit } from '../../pages/api/octokit';
 import ProjectLlist from '../../shared/ProjectListt/ProjectNew';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchRepositories } from '../../redux/repoSlice';
+import { fetchRepositories } from '../../redux/repoGithubSlice/repoGithubSlice';
 
 function Project() {
   const repo = useSelector(state => state.repo)
@@ -29,7 +29,7 @@ function Project() {
     dispatch(fetchRepositories())
   }, [])
 
-  console.log('repo', repo)
+  console.log('repo', repo?.repositories)
 
   return (
     <Container maxW="9xl" backgroundColor="#ffff">
@@ -68,7 +68,7 @@ function Project() {
                 </TabList>
                 <TabPanels>
                   <TabPanel>
-                    <ProjectLlist data={repo} />
+                    <ProjectLlist data={repo?.repositories} />
                   </TabPanel>
                   <TabPanel>
                     <p>two!</p>
