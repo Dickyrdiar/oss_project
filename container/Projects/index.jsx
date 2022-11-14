@@ -19,22 +19,17 @@ import { Icon } from '@iconify/react';
 import GetHitApi from '../../pages/api/GetHitApi';
 import { octokit } from '../../pages/api/octokit';
 import ProjectLlist from '../../shared/ProjectListt/ProjectNew';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchRepositories } from '../../redux/repoGithubSlice/repoGithubSlice';
 
 function Project() {
-  const [repos, setRepos] = useState([]);
-  const [loading, setLoading] = useState(false);
-
+  const repo = useSelector(state => state.repo)
+  const dispatch = useDispatch()
   useEffect(() => {
-    async function onUSer() {
-      setLoading(true);
-      await octokit.request('GET /repositories', {}).then((res) => {
-        setRepos(res?.data);
-      }).catch((err) => {
-        console.log('error', err);
-      });
-    }
-    onUSer();
-  }, []);
+    dispatch(fetchRepositories())
+  }, [])
+
+  console.log('repo', repo?.repositories)
 
   return (
     <Container maxW="9xl" backgroundColor="#ffff">
@@ -59,7 +54,7 @@ function Project() {
             py={{ base: 10, md: 36 }}
           >
             <Container maxW="4xl">
-              <Tabs isFitted variant="enclosed" maxW="4xl">
+              <Tabs isFitted variant="enclosed" maxW="6xl">
                 <TabList mb="1em">
                   <Tab>
                     <Icon icon="bi:github" width="25" height="25" />
@@ -73,7 +68,7 @@ function Project() {
                 </TabList>
                 <TabPanels>
                   <TabPanel>
-                    <ProjectLlist data={repos} />
+                    <ProjectLlist data={repo?.repositories} />
                   </TabPanel>
                   <TabPanel>
                     <p>two!</p>

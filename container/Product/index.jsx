@@ -10,12 +10,12 @@ function Product({
   imageSrc, title, price, startGazzer, forkRepo, repoName,
 }) {
   const { response: responseStart } = GetHitApi({
-    url: startGazzer,
+    url: 'https://api.github.com/repos/mojombo/grit/languages'
   });
 
   useEffect(() => {
     if (responseStart) {
-      console.log('data', responseStart);
+      console.log('data tags', responseStart);
     }
   }, [responseStart]);
 
@@ -48,7 +48,7 @@ function Product({
         </Stack>
         <Box as="span" color="gray.600" fontSize="sm" alignItems="center" mt="7px">
           <Icon icon="fa-regular:star" color="black" />
-          {startGazzer}
+          {/* {startGazzer} */}
         </Box>
         <Box as="span" color="gray.600" fontSize="sm" alignItems="center" mt="7px">
           <Icon icon="charm:git-fork" />
