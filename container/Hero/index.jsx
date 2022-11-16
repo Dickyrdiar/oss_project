@@ -5,11 +5,24 @@ import {
   Stack,
   Text,
   Button,
-  // IconProps,
+
 } from '@chakra-ui/react';
 import Link from 'next/link';
 
+// import { useState } from 'react';
+// import ModalLogin from '../../shared/Modal';
+
 export default function CallToActionWithIllustration() {
+  // const [openPopup, setOpenPopup] = useState(false);
+
+  // const handleClick = () => {
+  //   setOpenPopup(true);
+  // };
+
+  // const handleClickClose = () => {
+  //   setOpenPopup(false);
+  // };
+
   return (
     <Container maxW="5xl">
       <Stack
@@ -30,9 +43,6 @@ export default function CallToActionWithIllustration() {
           </Text>
         </Heading>
         <Text color="gray.500" maxW="3xl">
-          {/* Never miss a meeting. Never be late for one too. Keep track of your
-          meetings and receive smart reminders in appropriate times. Read your
-          smart “Daily Agenda” every morning. */}
           to help developers find and contribute to the open source projects they dream of and want
         </Text>
         <Stack spacing={6} direction="row">
@@ -42,8 +52,9 @@ export default function CallToActionWithIllustration() {
             colorScheme="black"
             bg="gray.900"
             _hover={{ bg: 'gray.900' }}
+            // onClick={handleClick}
           >
-            <Link href="/projects">
+            <Link href="/Login">
               Get started
             </Link>
           </Button>
@@ -51,6 +62,7 @@ export default function CallToActionWithIllustration() {
             Learn more
           </Button>
         </Stack>
+        {/* <ModalLogin isOpen={openPopup} onClose={handleClickClose} /> */}
       </Stack>
     </Container>
   );
