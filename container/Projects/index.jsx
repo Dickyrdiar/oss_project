@@ -16,20 +16,22 @@ import {
 // import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
 import { Icon } from '@iconify/react';
-import GetHitApi from '../../pages/api/GetHitApi';
-import { octokit } from '../../pages/api/octokit';
-import ProjectLlist from '../../shared/ProjectListt/ProjectNew';
 import { useDispatch, useSelector } from 'react-redux';
+import ProjectLlist from '../../shared/ProjectListt/ProjectNew';
 import { fetchRepositories } from '../../redux/repoGithubSlice/repoGithubSlice';
+import { fetchProject } from '../../redux/repoGithubSlice/repoGitlabSlice';
 
 function Project() {
-  const repo = useSelector(state => state.repo)
-  const dispatch = useDispatch()
+  const repo = useSelector((state) => state.repo);
+  const project = useSelector((state) => state.repoGitlab);
+  const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(fetchRepositories())
-  }, [])
+    dispatch(fetchRepositories());
+    dispatch(fetchProject());
+  }, []);
 
-  console.log('repo', repo?.repositories)
+  // console.log('repo', repo?.repositories);
+  console.log('project', project);
 
   return (
     <Container maxW="9xl" backgroundColor="#ffff">

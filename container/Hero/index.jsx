@@ -9,20 +9,7 @@ import {
 } from '@chakra-ui/react';
 import Link from 'next/link';
 
-// import { useState } from 'react';
-// import ModalLogin from '../../shared/Modal';
-
 export default function CallToActionWithIllustration() {
-  // const [openPopup, setOpenPopup] = useState(false);
-
-  // const handleClick = () => {
-  //   setOpenPopup(true);
-  // };
-
-  // const handleClickClose = () => {
-  //   setOpenPopup(false);
-  // };
-
   return (
     <Container maxW="5xl">
       <Stack
@@ -54,7 +41,7 @@ export default function CallToActionWithIllustration() {
             _hover={{ bg: 'gray.900' }}
             // onClick={handleClick}
           >
-            <Link href="/Login">
+            <Link href="/projects">
               Get started
             </Link>
           </Button>
@@ -62,7 +49,6 @@ export default function CallToActionWithIllustration() {
             Learn more
           </Button>
         </Stack>
-        {/* <ModalLogin isOpen={openPopup} onClose={handleClickClose} /> */}
       </Stack>
     </Container>
   );

@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import {
   Box,
   Flex,
@@ -5,14 +6,14 @@ import {
   Heading,
   Text,
   Container,
-  Input,
   Button,
   SimpleGrid,
   Avatar,
   AvatarGroup,
   useBreakpointValue,
-  Icon,
 } from '@chakra-ui/react';
+import { Icon } from '@iconify/react';
+import Link from 'next/link';
 
 const avatars = [
   {
@@ -48,13 +49,18 @@ export default function LoginPage() {
         py={{ base: 10, sm: 20, lg: 32 }}
       >
         <Stack spacing={{ base: 10, md: 20 }}>
+          <Box>
+            <Link href="/">
+              <Icon icon="bi:arrow-left" width="30" height="30" />
+            </Link>
+          </Box>
           <Heading
             lineHeight={1.1}
             fontSize={{
               base: '3xl', sm: '4xl', md: '5xl', lg: '6xl',
             }}
           >
-            Senior web designers
+            Developer
             {' '}
             <Text
               as="span"
@@ -64,7 +70,7 @@ export default function LoginPage() {
               &
             </Text>
             {' '}
-            Full-Stack Developers
+            Software Enggineer
           </Heading>
           <Stack direction="row" spacing={4} align="center">
             <AvatarGroup>
@@ -135,7 +141,7 @@ export default function LoginPage() {
               lineHeight={1.1}
               fontSize={{ base: '2xl', sm: '3xl', md: '4xl' }}
             >
-              Join our team
+              Join our Comunnity
               <Text
                 as="span"
                 bgGradient="linear(to-r, red.400,pink.400)"
@@ -146,7 +152,7 @@ export default function LoginPage() {
             </Heading>
             <Text color="gray.500" fontSize={{ base: 'sm', sm: 'md' }}>
               We’re looking for amazing engineers just like you! Become a part
-              of our rockstar engineering team and skyrocket your career!
+              of open source engineering team and grow up your career!
             </Text>
           </Stack>
           <Box as="form" mt={10}>
@@ -161,6 +167,9 @@ export default function LoginPage() {
                 boxShadow: 'xl',
               }}
             >
+              <Stack padding="13px">
+                <Icon icon="logos:gitlab" width="20" height="20" />
+              </Stack>
               Gitlab
             </Button>
 
@@ -168,14 +177,34 @@ export default function LoginPage() {
               fontFamily="heading"
               mt={8}
               w="full"
-              bgGradient="#170202"
+              bgGradient="linear(to-r, gray.900,gray.400)"
               color="white"
               _hover={{
-                bgGradient: '#090505',
+                bgGradient: 'linear(to-r, gray.900,gray.400)',
                 boxShadow: 'xl',
               }}
             >
+              <Stack padding="14px">
+                <Icon icon="bi:github" width="20" height="20" />
+              </Stack>
               Github
+            </Button>
+
+            <Button
+              fontFamily="heading"
+              mt={8}
+              w="full"
+              bgGradient="linear(to-r, blue.400,gray.400)"
+              color="white"
+              _hover={{
+                bgGradient: 'linear(to-r, blue.400,gray.400)',
+                boxShadow: 'xl',
+              }}
+            >
+              <Stack padding="14px">
+                <Icon icon="logos:bitbucket" width="20" height="20" />
+              </Stack>
+              BitBucket
             </Button>
           </Box>
           form

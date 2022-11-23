@@ -1,38 +1,39 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
-import { octokit } from "../../pages/api/octokit"
+/* eslint-disable no-unused-expressions */
+/* eslint-disable no-sequences */
+/* eslint-disable no-param-reassign */
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { octokit } from '../../pages/api/octokit';
 
 const initialState = {
   loading: false,
   repositories: [],
-  error: ''
-}
+  error: '',
+};
 
-export const fetchRepositories = createAsyncThunk('repo/fetchRepositories', () => {
-  return octokit
-    .request('GET /repositories', {})
-    .then(res => res.data)
-})
+export const fetchRepositories = createAsyncThunk('repo/fetchRepositories', () => octokit
+  .request('GET /repositories', {})
+  .then((res) => res.data));
 
 const repositoriesSlice = createSlice({
   name: 'repositories',
   initialState,
-  extraReducers: builder => {
-    builder.addCase(fetchRepositories.pending, state => {
-      state.loading = true
-    })
+  extraReducers: (builder) => {
+    builder.addCase(fetchRepositories.pending, (state) => {
+      state.loading = true;
+    });
 
     builder.addCase(fetchRepositories.fulfilled, (state, action) => {
       state.loading = false,
       state.repositories = action.payload,
-      state.error = ''
-    })
+      state.error = '';
+    });
 
     builder.addCase(fetchRepositories.rejected, (state, action) => {
       state.loading = false,
       state.repositories = [],
-      state.error = action.error.message
-    })
-  }
-})
+      state.error = action.error.message;
+    });
+  },
+});
 
-export default repositoriesSlice.reducer
+export default repositoriesSlice.reducer;
