@@ -1,8 +1,12 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable jsx-a11y/anchor-is-valid */
+/* eslint-disable react/jsx-no-useless-fragment */
 /* eslint-disable max-len */
 import React from 'react';
 import {
-  Link, Box, Flex, Text, Stack, Container,
+  Link, Box, Flex, Text, Stack, Container, Button,
 } from '@chakra-ui/react';
+import { signIn, useSession } from 'next-auth/react';
 import dataHeader from './dataHeader';
 
 import Logo from './logo';
@@ -84,7 +88,9 @@ function MenuLinks({ isOpen }) {
           direction={['column', 'row', 'row', 'row']}
           pt={[4, 4, 0, 0]}
         >
-          {dataHeader && dataHeader?.map((val) => (<MenuItem key={val.id} to={val.url}>{val.label}</MenuItem>))}
+          <>
+            {dataHeader && dataHeader?.map((val) => (<MenuItem key={val.id} to={val.url}>{val.label}</MenuItem>))}
+          </>
         </Stack>
       </Container>
     </Box>
